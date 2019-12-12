@@ -123,7 +123,7 @@ router.get("/cleansheetsjson", async(req, res) => {
 });
 
 router.get("/topgoalteamjson", async(req, res) => {
-	req.setTimeout(500000);
+
     const topstat = await footballscraper.topStats();
     const reststat = await  footballscraper.restStats();
     const top = await topstat.slice(4,5);
@@ -131,6 +131,7 @@ router.get("/topgoalteamjson", async(req, res) => {
     const all = await top.concat(rest);
 
     res.json(all);
+    req.setTimeout(500000);
 });
 
 router.get("/toppassesteamjson", async(req, res) => {
