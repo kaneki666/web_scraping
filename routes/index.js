@@ -123,6 +123,7 @@ router.get("/cleansheetsjson", async(req, res) => {
 });
 
 router.get("/topgoalteamjson", async(req, res) => {
+	req.setTimeout(500000);
     const topstat = await footballscraper.topStats();
     const reststat = await  footballscraper.restStats();
     const top = await topstat.slice(4,5);
