@@ -6,7 +6,7 @@ function topStats () {
         try {
             const browser = await puppeteer.launch();
             const page = await browser.newPage();
-            await page.goto(plurl,{ timeout: 0 });
+            await page.goto(plurl,{ timeout: 30 });
             let urls = await page.evaluate(() => {
                 let results = [];
            

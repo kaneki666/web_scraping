@@ -131,7 +131,6 @@ router.get("/topgoalteamjson", async(req, res) => {
     const all = await top.concat(rest);
 
     res.json(all);
-    req.setTimeout(500000);
 });
 
 router.get("/toppassesteamjson", async(req, res) => {
