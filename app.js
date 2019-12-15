@@ -31,7 +31,7 @@ const GMT_9  = { Asia_Khandyga, Asia_yakutsk } = input_time + 9;
 const GMT_10 = { Antarctica_DumontDUrville, Australia_Brisbane } = input_time + 10;
 const GMT_11 = { Australia_Currie } = input_time + 11;
 const GMT_12 = { Pacific_Kwajalein } = input_time + 12;
-const GMT_13 = { Pacific_Auckland } = input_time + 13;
+// const GMT_13 = { Pacific_Auckland } = input_time + 13;
 const GMT__3 = { Antarctica_Palmer } = input_time - 3;
 const GMT__4 = { America_Goose_Bay } = input_time - 4;
 const GMT__5 = { America_Pangnirtung, America_Thunder_Bay } = input_time - 5;
@@ -39,7 +39,7 @@ const GMT__6 = { America_Monterrey, America_Tegucigalpa, America_Costa_Rica } = 
 const GMT__7  = { America_Whitehorse, America_Tijuana, America_Dawson } = input_time - 8;
 
 
-cron.schedule(`* ${GMT_1},${GMT_2},${GMT_3},${GMT_4},${GMT_5},${GMT_6},${GMT_7},${GMT_8},${GMT_9},${GMT_10},${GMT_11},${GMT_12},${GMT_13},${GMT__3},${GMT__4},${GMT__5},${GMT__6},${GMT__7} 15 12 *`, (req, res) => {
+cron.schedule(`* ${GMT__7},${GMT__6},${GMT__5},${GMT__4},${GMT__3},${GMT_1},${GMT_2},${GMT_3},${GMT_4},${GMT_5},${GMT_6},${GMT_7},${GMT_8},${GMT_9},${GMT_10},${GMT_11},${GMT_12} 15 12 *`, (req, res) => {
     console.log("Sending Mail!!!");
     const mailTo = {
         from: "msadman789@gmail.com",
