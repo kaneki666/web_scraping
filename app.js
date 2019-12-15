@@ -7,6 +7,13 @@ const path = require("path")
 const cron = require('node-cron');
 const nodemailer = require('nodemailer');
 
+
+const scraper = require("./scraper/scraper");
+const torrentscraper = require("./scraper/torrentscraper");
+const mediascraper = require("./scraper/mediascraper");
+const newsscraper = require("./scraper/newsscraper");
+const footballscraper = require("./scraper/footballscraper");
+
 const app = express()
 app.use(express.static(`${__dirname}/public`));
 
@@ -21,11 +28,6 @@ app.use(cors());
 
 
 
-const scraper = require("./scraper/scraper");
-const torrentscraper = require("./scraper/torrentscraper");
-const mediascraper = require("./scraper/mediascraper");
-const newsscraper = require("./scraper/newsscraper");
-const footballscraper = require("./scraper/footballscraper");
 
 
 //Routes
