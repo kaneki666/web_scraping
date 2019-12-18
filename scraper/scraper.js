@@ -1,6 +1,6 @@
 const fetch = require("node-fetch");
 const cheerio = require("cheerio");
-
+const random =require('random-key-generator');
 
 const url1 = "https://bikroy.com/bn/ads?query=";
 const url2 = "https://cellbazaar.com/search/pattern,";
@@ -21,6 +21,7 @@ function searchProducts1(searchTerm) {
                 const $image = $element.find(".normal-ad--1TyjD");
                 const $bikroy = "https://bikroy.com";
                 const $website = "Product of bikroy.com";
+                const $key = random.getRandom(10);
 
                 const product = {
                     title: $title.text(),
@@ -28,7 +29,8 @@ function searchProducts1(searchTerm) {
                     price: $price.text(),
                     link: $bikroy + $link.attr("href"),
                     image: $image.attr("src"),
-                    website: $website
+                    website: $website,
+                    key: $key
                 };
                 products.push(product);
             });
@@ -52,6 +54,7 @@ function searchProducts2(searchTerm) {
                 const $link = $element.find(".view");
                 const $image = $element.find(".lazy");
                 const $website = " Product of cellbazaar.com";
+                const $key = random.getRandom(10);
 
                 const product = {
                     title: $title.text(),
@@ -59,7 +62,8 @@ function searchProducts2(searchTerm) {
                     price: $price.text(),
                     link: $link.attr("href"),
                     image: $image.attr("src"),
-                    website: $website
+                    website: $website,
+                    key: $key
                 };
                 products.push(product);
             });
@@ -81,13 +85,15 @@ function searchProducts3(searchTerm) {
                 const $price = $element.find(".price");
                 const $link = $element.find("a");
                 const $image = $element.find(".img-responsive");
+                const $key = random.getRandom(10);
 
                 const product = {
                     title: $title.attr('title'),
                     price: $price.text(),
                     link: $link.attr("href"),
                     image: $image.attr("src"),
-                    website: $website
+                    website: $website,
+                    key: $key
                 };
                 products.push(product);
             });
@@ -96,63 +102,10 @@ function searchProducts3(searchTerm) {
         });
 }
 
-const puppeteer = require('puppeteer');
-const url4 = "https://www.amazon.com/s?k="
-
-function searchProducts4(searchTerm) {
-    return new Promise(async (resolve, reject) => {
-        try {
-            const browser = await puppeteer.launch();
-            const page = await browser.newPage();
-            await page.goto(`${url4}${searchTerm}`);
-
-            let urls = await page.evaluate(() => {
-                let results = [];
-                let items = document.querySelectorAll('.a-section img');
-                let items2 = document.querySelectorAll('.a-offscreen');
-                let items3 = document.querySelectorAll('.a-link-normal');
-                items.forEach((item) => {
-                    results.push({
-                        title:  item.getAttribute('alt'),
-                        image:  item.getAttribute('src')
-
-                    });
-                });
-
-                items2.forEach((item) => {
-                    results.push({
-
-                        price:  item.innerText
-
-                    });
-                });
-
-                items3.forEach((item) => {
-                    results.push({
-
-                        link:  item.getAttribute('href')
-
-                    });
-                });
-
-
-
-                return results;
-            })
-            browser.close();
-            return resolve(urls);
-        } catch (e) {
-            return reject(e);
-        }
-    })
-}
-
-
 
 
 module.exports = {
     searchProducts1,
     searchProducts2,
-    searchProducts3,
-    searchProducts4
+    searchProducts3
 };

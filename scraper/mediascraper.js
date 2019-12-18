@@ -1,3 +1,4 @@
+const random =require('random-key-generator');
 const fetch = require("node-fetch");
 const cheerio = require("cheerio");
 
@@ -17,11 +18,13 @@ function search1(searchTerm) {
                 const $title = $element.find("a");
                 const $description = $element.find("a img");
                 const $image = $element.find(".a-section img");
+                const $key = random.getRandom(10);
                 
                 const result = {
                     title: $description.attr('title') ,
                     link: $title.attr('href'),
-                    image: $description.attr('data-original')
+                    image: $description.attr('data-original'),
+                    key: $key
                     
                 };
                 results.push(result);
@@ -41,11 +44,13 @@ function search2(searchTerm) {
                 const $title = $element.find("a");
                 const $link = $element.find("a");
                 const $image = $element.find("img");
+                const $key = random.getRandom(10);
                 
                 const result = {
                     title: $title.attr('title'),
                     link: "https://www2.watchmovie.io"+ $link.attr('href'),
-                    image: $image.attr('src')
+                    image: $image.attr('src'),
+                    key: $key
                     
                 };
                 results.push(result);
@@ -65,11 +70,13 @@ function search3(searchTerm) {
                 const $title = $element.find("a");
                 const $link = $element.find("a");
                 const $image = $element.find("img");
+                const $key = random.getRandom(10);
 
                 const result = {
                     title: $title.text(),
                     link: $link.attr('href'),
-                    image: $image.attr('src')
+                    image: $image.attr('src'),
+                    key: $key
                     
                 };
                 results.push(result);
@@ -89,11 +96,13 @@ function search4(searchTerm) {
                 const $title = $element.find("a");
                 const $link = $element.find("a");
                 const $image = $element.find("img");
+                const $key = random.getRandom(10);
 
                 const result = {
                     title: $title.attr('title') ,
                     link: "https://www4.gogoanime.io" + $link.attr('href'),
-                    image: $image.attr('src')
+                    image: $image.attr('src'),
+                    key: $key
                     
                 };
                 results.push(result);

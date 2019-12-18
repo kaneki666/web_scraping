@@ -1,3 +1,4 @@
+const random =require('random-key-generator');
 const puppeteer = require('puppeteer');
 const fetch = require("node-fetch");
 const cheerio = require("cheerio");
@@ -16,10 +17,13 @@ function searchPiratebay(searchTerm) {
                 const $element = $(element);
                 const $title = $element.find("a");
                 const $link = $element.find("a");
+                const $key = random.getRandom(10);
 
                 const result = {
                     title: $title.attr('title'),
-                    link: "https://proxtpb.art" + $link.attr('href')
+                    link: "https://proxtpb.art" + $link.attr('href'),
+                    key: $key
+
 
                 };
                 results.push(result);
@@ -62,10 +66,12 @@ function searchTorrentz2(searchTerm) {
                 const $element = $(element);
                 const $title = $element.find("dt a");
                 const $link = $element.find("dt a");
+                const $key = random.getRandom(10);
 
                     const result = {
                         title : $title.text(),
-                        link : "https://torrentz2.eu" + $link.attr('href')
+                        link : "https://torrentz2.eu" + $link.attr('href'),
+                        key: $key
                 };
                 results.push(result);
             });
